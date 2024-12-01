@@ -1,4 +1,4 @@
-with open('../input.csv', 'r') as file:
+with open('../test_input.csv', 'r') as file:
     lines = file.readlines()
 
 hashmap1 = {}

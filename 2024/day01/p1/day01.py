@@ -3,25 +3,19 @@ with open('../input.csv', 'r') as file:
 
 list1 = []
 list2 = []
-
 distance_list = []
 
 for line in lines:
     columns = line.strip().split(',')
 
-    list1.append(columns[0])
-    list2.append(columns[1])
+    list1.append(int(columns[0]))
+    list2.append(int(columns[1]))
 
 # print("List1:", list1)
 # print("List2:", list2)
 
 list1.sort()
 list2.sort()
-
-#convert string list to int
-list1 = [int(x) for x in list1]
-list2 = [int(x) for x in list2]
-
 
 # print("List1:", list1)
 # print("List2:", list2)

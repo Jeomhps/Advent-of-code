@@ -85,6 +85,9 @@ def p2(matrix) -> int:
 
     for r in range(rows):
         for c in range(cols):
+            if matrix[r][c] not in {"M", "S"}:
+                continue
+
             if all(0 <= r + dr < rows and 0 <= c + dc < cols for dr, dc in offsets):
                 pattern = "".join(matrix[r + dr][c + dc] for dr, dc in offsets)
 

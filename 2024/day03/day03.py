@@ -19,7 +19,28 @@ def p1(text) -> int:
     return sum
 
 def p2(text) -> int:
-    return 0
+    splitted_text = re.split(r"(do\(\)|don't\(\))", text)
+
+    result = []
+    keep = True 
+
+    for slice in splitted_text:
+        if slice == "do()":
+            keep = True
+        elif slice == "don't()":
+            keep = False
+        elif keep:
+            result.append(slice)
+    
+    corrected_text = ''.join(result)
+
+    numbers_to_mul = re.findall(r"mul\((\d{1,3}),(\d{1,3})\)", corrected_text)
+
+    sum = 0
+    for a,b in numbers_to_mul:
+        sum += (int(a) * int(b))
+
+    return sum
 
 def main(filename: str):
     with open(filename, 'r') as file:
@@ -27,8 +48,8 @@ def main(filename: str):
 
 
     s1 = p1(text)
-    # s2 = p2(text)
-    print(s1)
+    s2 = p2(text)
+    print(s1,s2)
 
 if __name__ == "__main__":
     main(argv[1])

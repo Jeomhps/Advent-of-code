@@ -56,17 +56,50 @@ def p1(matrix) -> int:
     return count
 
 
-def p2(input) -> int:
-    return 0
+def p2(matrix) -> int:
+    """
+    possible patterns :
+
+    M.S M.M S.M S.S
+    .A. .A. .A. .A.
+    M.S S.S S.M M.M
+
+    My idea to solve this is for each char, take the relevant chars using an 
+    offset to concatenate them and check wheter the concatenation is exactly
+    the same as the concat of one of the possibility.
+    """
+
+    target_patterns = {"MSAMS", "MMASS", "SMASM", "SSAMM"}
+
+    rows, cols = len(matrix), len(matrix[0])
+
+    offsets = [
+        (0, 0), # Current char
+        (0, 2), # Cols + 2 char so top right of scheme
+        (1, 1), # Middle one, the A
+        (2, 0), # Bottom left one
+        (2, 2), # Bottom right one
+    ]
+
+    xmas_count = 0
+
+    for r in range(rows):
+        for c in range(cols):
+            if all(0 <= r + dr < rows and 0 <= c + dc < cols for dr, dc in offsets):
+                pattern = "".join(matrix[r + dr][c + dc] for dr, dc in offsets)
+
+                if pattern in target_patterns:
+                    xmas_count += 1
+
+    return xmas_count
 
 def main(filename: str):
     with open(filename, 'r') as file:
         matrix = [list(line.strip()) for line in file]
 
     s1 = p1(matrix)
-    print(s1)
-    # s2 = p2(lines)
-    # print(s1,s2)
+    s2 = p2(matrix)
+    print(s1,s2)
 
 if __name__ == "__main__":
     main(argv[1])

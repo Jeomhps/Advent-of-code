@@ -65,7 +65,7 @@ def p2(matrix) -> int:
     M.S S.S S.M M.M
 
     My idea to solve this is for each char, take the relevant chars using an 
-    offset to concatenate them and check wheter the concatenation is exactly
+    offset to concatenate them and check whether the concatenation is exactly
     the same as the concat of one of the possibility.
     """
 

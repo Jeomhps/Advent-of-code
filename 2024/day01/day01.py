@@ -6,10 +6,7 @@ AoC 2024 Day 1 - https://adventofcode.com/2024/day/1
 
 from sys import argv
 
-with open(argv[1], 'r') as file:
-    lines = file.readlines()
-
-def p1() -> int:
+def p1(lines) -> int:
     list1 = []
     list2 = []
     distance_list = []
@@ -30,7 +27,7 @@ def p1() -> int:
 
     return sum(distance_list)
 
-def p2() -> int:
+def p2(lines) -> int:
     hashmap1 = {}
     hashmap2 = {}
 
@@ -52,8 +49,8 @@ def main(filename: str):
     with open(filename, 'r') as file:
         lines = file.readlines()
 
-    s1 = p1()
-    s2 = p2()
+    s1 = p1(lines)
+    s2 = p2(lines)
     print(s1,s2)
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ AoC 2024 Day 5 - https://adventofcode.com/2024/day/5
 
 from sys import argv
 
-def order(rules, pages):
+def order(rules, page):
     """ 
     https://stackoverflow.com/questions/21762177/sort-lists-in-python-based-on-a-rule
 
@@ -22,7 +22,7 @@ def order(rules, pages):
     The 'page' list is then sorted in **descending order** of these weights. The items with the highest weight 
     come first, and the ones with lower weights are placed later in the sorted list.
     """
-    return sorted(pages, key=lambda x: -sum(f"{x}|{y}" in rules for y in pages))
+    return sorted(page, key=lambda x: -sum(f"{x}|{y}" in rules for y in page))
 
 def p1(rules, pages) -> int:
     mid_sum = 0

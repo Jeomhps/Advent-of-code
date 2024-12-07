@@ -38,8 +38,45 @@ def p1(data) -> list:
 
     return valid_keys
 
-def p2(text) -> int:
-    return 20
+def concatenate(a, b):
+    return int(str(a) + str(b))
+
+def p2(data) -> list:
+    valid_keys = []
+
+    for key, values in data:
+        num_operations = len(values) - 1
+        
+        operator_sequences = []
+        for i in range(3 ** num_operations):
+            sequence = []
+            # temp = i
+            for _ in range(num_operations):
+                if i % 3 == 0:
+                    sequence.append('+')
+                elif i % 3 == 1:
+                    sequence.append('*')
+                elif i % 3 == 2:
+                    sequence.append('||')
+                i //= 3
+            operator_sequences.append(sequence)
+
+        for operators in operator_sequences:
+            result = values[0]
+            
+            for i in range(num_operations):
+                if operators[i] == '+':
+                    result += values[i + 1]
+                elif operators[i] == '*':
+                    result *= values[i + 1]
+                elif operators[i] == '||':
+                    result = concatenate(result, values[i + 1])
+            
+            if result == key:
+                valid_keys.append(key)
+                break
+
+    return valid_keys
 
 def main(filename: str):
     data = []
@@ -53,8 +90,8 @@ def main(filename: str):
 
     s1 = p1(data)
     print(sum(s1))
-    # s2 = p2(text)
-    # print(s1, s2)
+    s2 = p2(data)
+    print(sum(s2))
 
 if __name__ == "__main__":
     main(argv[1])
